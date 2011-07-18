@@ -73,7 +73,7 @@ With jquery-behaviors you could easily build a general ajax loading mechanism:
 
 h2. And Another Example
 
-Polyfill for HTML5 autofocus logic:
+Polyfill for HTML5 autofocus:
 
 <pre><code>if (!("autofocus" in document.createElement("input"))) {
   $.behaviors({
@@ -86,4 +86,4 @@ Polyfill for HTML5 autofocus logic:
 
 h1. Contributors
 
-Author: "@tiff":https://github/tiff (based on the work of "@aemkei":https://github/aemkei and the idea of "http://www.ccs.neu.edu/home/dherman/javascript/behavior/":http://www.ccs.neu.edu/home/dherman/javascript/behavior/)
+Author: "@tiff":https://github.com/tiff (based on the work of "@aemkei":https://github.com/aemkei and the idea of "http://www.ccs.neu.edu/home/dherman/javascript/behavior/":http://www.ccs.neu.edu/home/dherman/javascript/behavior/)
