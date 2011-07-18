@@ -20,8 +20,8 @@ h2. Example
 You know, doing something like the following, won't make you any new friends:
 
 <pre><code>
-  <a onclick="window.open(this.href); return false;" href="/popup.html">open popup</a>
-  <a onclick="window.open(this.href); return false;" href="/another_popup.html">open another popup</a>
+<a onclick="window.open(this.href); return false;" href="/popup.html">open popup</a>
+<a onclick="window.open(this.href); return false;" href="/another_popup.html">open another popup</a>
 </code></pre>
 
 Instead use jquery-behaviors and you'll end up having this clean separation:
@@ -29,19 +29,19 @@ Instead use jquery-behaviors and you'll end up having this clean separation:
 *HTML*
 
 <pre><code>
-  <a data-popup="true" href="/popup.html">open popup</a>
-  <a data-popup="true" href="/another_popup.html">open another popup</a>
+<a data-popup="true" href="/popup.html">open popup</a>
+<a data-popup="true" href="/another_popup.html">open another popup</a>
 </code></pre>
 
 *JavaScript*
 
 <pre><code>
-  $.behaviors({
-    "a[data-popup]:click": function(link, event) {
-      window.open(link.href);
-      event.preventDefault();
-    }
-  });
+$.behaviors({
+  "a[data-popup]:click": function(link, event) {
+    window.open(link.href);
+    event.preventDefault();
+  }
+});
 </code></pre>
 
 h2. Another Example
@@ -49,12 +49,12 @@ h2. Another Example
 Assuming you want to fill a bunch of elements with content fetched via ajax:
 
 <pre><code>
-  <div id="ajax-content-1"></div>
-  <div id="ajax-content-2"></div>
-  <script>
-    $("#ajax-content-1").load("/ajax_content.php?id=1");
-    $("#ajax-content-2").load("/ajax_content.php?id=2");
-  </script>
+<div id="ajax-content-1"></div>
+<div id="ajax-content-2"></div>
+<script>
+  $("#ajax-content-1").load("/ajax_content.php?id=1");
+  $("#ajax-content-2").load("/ajax_content.php?id=2");
+</script>
 </code></pre>
 
 With jquery-behaviors you could easily build a general ajax loading mechanism:
@@ -62,19 +62,19 @@ With jquery-behaviors you could easily build a general ajax loading mechanism:
 *HTML*
 
 <pre><code>
-  <output data-ajax-content="/ajax_content.php?id=1"></output>
-  <output data-ajax-content="/ajax_content.php?id=2"></output>
+<output data-ajax-content="/ajax_content.php?id=1"></output>
+<output data-ajax-content="/ajax_content.php?id=2"></output>
 </code></pre>
 
 *JavaScript*
 
 <pre><code>
-  $.behaviors({
-    "output[data-ajax-content]": function(container) {
-      var $container = $(container);
-      $container.load($container.data("ajax-content"));
-    }
-  });
+$.behaviors({
+  "output[data-ajax-content]": function(container) {
+    var $container = $(container);
+    $container.load($container.data("ajax-content"));
+  }
+});
 </code></pre>
 
 h2. And Another Example
@@ -82,13 +82,13 @@ h2. And Another Example
 Polyfill for HTML5 autofocus logic:
 
 <pre><code>
-  if (!("autofocus" in document.createElement)) {
-    $.behaviors({
-      "input[autofocus], textarea[autofocus], select[autofocus], button[autofocus]": function(element) {
-        element.focus();
-      }
-    });
-  }
+if (!("autofocus" in document.createElement)) {
+  $.behaviors({
+    "input[autofocus], textarea[autofocus], select[autofocus], button[autofocus]": function(element) {
+      element.focus();
+    }
+  });
+}
 </code></pre>
 
 h1. Contributors
