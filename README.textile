@@ -1,0 +1,92 @@
+h1. jQuery Behaviors
+
+A library of dynamic HTML behaviors, modular units of Javascript code that can be associated with elements in a web page chosen with CSS selectors.
+Helps you to keep your JavaScript and HTML separated.
+
+h2. Browser Compatibility
+
+* IE 6+
+* Chrome
+* Safari 4+
+* Firefox 3.5+
+* Opera 11+
+
+h2. Requirements
+
+* jQuery 1.4+
+
+h2. Example
+
+You know, doing something like the following, won't make you any new friends:
+
+<pre>
+  <a onclick="window.open(this.href); return false;" href="/popup.html">open popup</a>
+  <a onclick="window.open(this.href); return false;" href="/another_popup.html">open another popup</a>
+</pre>
+
+Instead use jquery-behaviors and you'll end up having this clean separation:
+
+*HTML*
+<pre>
+  <a data-popup="true" href="/popup.html">open popup</a>
+  <a data-popup="true" href="/another_popup.html">open another popup</a>
+</pre>
+
+*JavaScript*
+<pre>
+  $.behaviors({
+    "a[data-popup]:click": function(link, event) {
+      window.open(link.href);
+      event.preventDefault();
+    }
+  });
+</pre>
+
+h2. Another Example
+
+Assuming you want to fill a bunch of elements with content fetched via ajax:
+
+<pre>
+  <div id="ajax-content-1"></div>
+  <div id="ajax-content-2"></div>
+  <script>
+    $("#ajax-content-1").load("/ajax_content.php?id=1");
+    $("#ajax-content-2").load("/ajax_content.php?id=2");
+  </script>
+</pre>
+
+With jquery-behaviors you could easily build a general ajax loading mechanism:
+
+*HTML*
+<pre>
+  <output data-ajax-content="/ajax_content.php?id=1"></output>
+  <output data-ajax-content="/ajax_content.php?id=2"></output>
+</pre>
+
+*JavaScript*
+<pre>
+  $.behaviors({
+    "output[data-ajax-content]": function(container) {
+      var $container = $(container);
+      $container.load($container.data("ajax-content"));
+    }
+  });
+</pre>
+
+h2. And Another Example
+
+Polyfill for HTML5 autofocus logic:
+
+<pre>
+  if (!("autofocus" in document.createElement)) {
+    $.behaviors({
+      "input[autofocus], textarea[autofocus], select[autofocus], button[autofocus]": function(element) {
+        element.focus();
+      }
+    });
+  }
+</pre>
+
+h1. Contributors
+
+Author: "https://github/tiff":@tiff (based on the work of "https://github/aemkei":@aemkei and the idea of "http://www.ccs.neu.edu/home/dherman/javascript/behavior/":http://www.ccs.neu.edu/home/dherman/javascript/behavior/)
