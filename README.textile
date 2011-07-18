@@ -93,4 +93,4 @@ if (!("autofocus" in document.createElement)) {
 
 h1. Contributors
 
-Author: "https://github/tiff":@tiff (based on the work of "https://github/aemkei":@aemkei and the idea of "http://www.ccs.neu.edu/home/dherman/javascript/behavior/":http://www.ccs.neu.edu/home/dherman/javascript/behavior/)
+Author: "@tiff":https://github/tiff (based on the work of @aemkei:"https://github/aemkei" and the idea of "http://www.ccs.neu.edu/home/dherman/javascript/behavior/":http://www.ccs.neu.edu/home/dherman/javascript/behavior/)
