@@ -43,20 +43,22 @@ test("Check adding of behavior with event", function() {
 });
 
 
-test("Check adding of complex css selector plus complex event", function() {
-  expect(3);
+test("Check adding of complex css selector plus custom event", function() {
+  expect(5);
 
   var $listItems = $("#test-container > ul li");
 
   $.behaviors({
-    "#test-container > ul li:first-child:custom:event": function(param1, param2) {
+    "#test-container > ul li:first-child:custom:event": function(param1, param2, param3, param4) {
       ok(true, "Behavior callback successfully executed");
       equals(param1, $listItems[0], "Callback passes element as first argument");
       ok(param2.preventDefault && param2.stopPropagation, "Callback passes event object as second argument");
+      strictEqual(param3, 1);
+      strictEqual(param4, 2);
     }
   });
   
-  $listItems.trigger("custom:event");
+  $listItems.trigger("custom:event", [1, 2]);
 });
 
 
