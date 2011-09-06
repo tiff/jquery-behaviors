@@ -67,8 +67,10 @@
     
     if (selector.event) {
       if (container.data(selector.original) != action) {
-        var callback = function(event) {
-          action(this, event);
+        var callback = function() {
+          var args = $.makeArray(arguments);
+          args.unshift(this);
+          action.apply(this, args);
         };
         container
           .data(selector.original, action)
