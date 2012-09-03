@@ -16,11 +16,11 @@ test("Check adding of simple behaviors", function() {
   $.behaviors({
     "a.test1": function(param) {
       ok(true, "Behavior callback successfully executed");
-      equals(param, anchor1, "Callback passes element as first argument");
+      equal(param, anchor1, "Callback passes element as first argument");
     },
     "a[data-attribute]": function(param) {
       ok(true, "Behavior callback successfully executed");
-      equals(param, anchor2, "Callback passes element as first argument");
+      equal(param, anchor2, "Callback passes element as first argument");
     }
   });
 });
@@ -34,7 +34,7 @@ test("Check adding of behavior with event", function() {
   $.behaviors({
     "input.test2:click": function(param1, param2) {
       ok(true, "Behavior callback successfully executed");
-      equals(param1, input, "Callback passes element as first argument");
+      equal(param1, input, "Callback passes element as first argument");
       ok(param2.preventDefault && param2.stopPropagation, "Callback passes event object as second argument");
     }
   });
@@ -51,7 +51,7 @@ test("Check adding of complex css selector plus custom event", function() {
   $.behaviors({
     "#test-container > ul li:first-child:custom:event": function(param1, param2, param3, param4) {
       ok(true, "Behavior callback successfully executed");
-      equals(param1, $listItems[0], "Callback passes element as first argument");
+      equal(param1, $listItems[0], "Callback passes element as first argument");
       ok(param2.preventDefault && param2.stopPropagation, "Callback passes event object as second argument");
       strictEqual(param3, 1);
       strictEqual(param4, 2);
@@ -78,8 +78,8 @@ test("Check if each behavior is only set once", function() {
   
   $("#test-element").trigger("mousedown").trigger("mousedown");
   
-  equals(counter1, 1);
-  equals(counter2, 2);
+  equal(counter1, 1);
+  equal(counter2, 2);
 });
 
 
